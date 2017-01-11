@@ -42,45 +42,45 @@
 					}
 			}],
 	"tudou_movie":[{
-				"Is_Json":0,
-				"Index_Url":["http://list.youku.com/category/show/c_96_s_1_d_1_p_1.html"],
+				"Is_Json":1,
+				"Splash":1,
+				"Index_Url":["http://www.tudou.com/s3portal/service/pianku/data.action?pageSize=90&app=mainsitepc&deviceType=1&tags=2373&tagType=3&firstTagId=5&areaCode=230100&pageNo=1"],
 				"Max_Page":{
-						"xpath":"//ul[@class=\"yk-pages\"]/li[last()-1]/a/text()",
-						"re":".+"
+						"index":["total"]
 					}
 			},
 			{
 				"All_Detail_Page":{
-						"xpath":["//li[@class=\"yk-col4 mr1\"]/div/div/a/@href"]
+						"index":["items","playUrl"]
 					}
 			},
 			{
 				"Signal_Detail_Page":{
-						"xpath":"//div[@class=\"base_info\"]/a[2]/@href"
+						"xpath":"//h1[@id=\"videoKw\"]/a/@href"
 					}		
 			},
 			{
 				"Final_Xpath":{
 						"site_name":["tudou_movie"],
-						"movie_name":[""],
-						"publish_time":[""],
-						"primary_stars":[""],
-						"director":[""],
-						"area":[""],
-						"style_classify":[""],
-						"language":[""],
-						"play_counts":[""],
-						"comment_counts":[""],
-						"introduce":[""],
-						"fav_counts":[""],
-						"step_counts":[""],
-						"score_level":[""],
-						"score_counts":[""],
-						"fans_counts":[""],
-						"index":[""],
-						"duration":[""],
-						"evaluation_counts":[""],
-						"vote_counts":[""]
+						"movie_name":["//div[@class=\"cover_info\"]/h2/strong[@title]/text()"],
+						"publish_time":["//span[@class=\"key_item t_one_line\"]/following-sibling::*[1]/text()"],
+						"primary_stars":["//span[@class=\"key_item t_one_line\"]/a/text()"],
+						"director":["//div[@class=\"cover_keys\"]/div[3]/span[1]/a/text()"],
+						"area":["//div[@class=\"cover_keys\"]/div[3]/span[3]/a/text()"],
+						"style_classify":["//div[@class=\"cover_keys\"]/div[3]/span[2]/a/text()"],
+						"language":["/"],
+						"play_counts":["//div[@class=\"cover_keys\"]/div[4]/span[1]/text()"],
+						"comment_counts":["//div[@class=\"cover_keys\"]/div[4]/span[2]/text()"],
+						"introduce":["//div[@class=\"desc\"]/p/text()"],
+						"fav_counts":["//div[@class=\"cover_keys\"]/div[4]/span[3]/text()"],
+						"step_counts":["/"],
+						"score_level":["/"],
+						"score_counts":["/"],
+						"fans_counts":["/"],
+						"index":["//span[@class=\"tudou_index\"]/a/@href"],
+						"duration":["//div[@class=\"cover_keys\"]/div[1]/span[2]/text()"],
+						"evaluation_counts":["/"],
+						"vote_counts":["/"]
 					}
 			}],
 	"souhu_movie":[{

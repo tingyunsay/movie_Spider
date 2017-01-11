@@ -29,7 +29,7 @@ from movie_Spider.Total_page_circulate import Total_page_circulate,Turn_True_Pag
 
 
 class movieSpider(scrapy.Spider):
-	name ='exam_movie'
+	name ='tudou_movie'
 	allowed_domain = []
 		
 	def __init__(self,*args,**kwargs):
@@ -49,6 +49,7 @@ class movieSpider(scrapy.Spider):
 		
 		for v in self.config:
 			if len(v[1]) == 2:
+				self.Splash = v[1][0]['Splash']
 				self.Index_Url = v[1][0]['Index_Url']
 				Is_Json = v[1][0]['Is_Json']
 				Max_Page = v[1][0]['Max_Page']
@@ -78,6 +79,7 @@ class movieSpider(scrapy.Spider):
 								yield request	
 			
 			if len(v[1]) == 3:
+				self.Splash = v[1][0]['Splash']
 				self.Index_Url = v[1][0]['Index_Url']
 				Is_Json = v[1][0]['Is_Json']
 				Max_Page = v[1][0]['Max_Page']
@@ -110,6 +112,7 @@ class movieSpider(scrapy.Spider):
 								yield request	
 				
 			if len(v[1]) == 4:
+				self.Splash = v[1][0]['Splash']
 				self.Index_Url = v[1][0]['Index_Url']
 				Is_Json = v[1][0]['Is_Json']
 				Max_Page = v[1][0]['Max_Page']
@@ -145,6 +148,7 @@ class movieSpider(scrapy.Spider):
 								yield request
 
 			if len(v[1]) == 5:
+				self.Splash = v[1][0]['Splash']
 				self.Index_Url = v[1][0]['Index_Url']
 				Is_Json = v[1][0]['Is_Json']
 				Max_Page = v[1][0]['Max_Page']
@@ -205,25 +209,31 @@ class movieSpider(scrapy.Spider):
 		
 		print "最大页数是:%d"%max_pages
 		if All_Detail_Page is None:
-				#for i in range(1,max_pages+1):
-				for i in range(1,2):
-						i = Turn_True_Page(i,self.name)
-						url = urls.format(page=str(i))
-						request = Request(url,callback = self.parse_final,dont_filter=True,meta={
-											'splash':{
-											'endpoint':'render.html',
-											'args':{
-													'wait':0.5,
-													'images':0,
-													'render_all':1
-													}
-											}
-								})
-						request.meta['Final_Xpath'] = Final_Xpath
-						yield request
+				if self.Splash:
+						for i in range(1,max_pages+1):
+								i = Turn_True_Page(i,self.name)
+								url = urls.format(page=str(i))
+								request = Request(url,callback = self.parse_final,dont_filter=True,meta={
+													'splash':{
+													'endpoint':'render.html',
+													'args':{
+															'wait':0.5,
+															'images':0,
+															'render_all':1
+															}
+														}
+													})
+								request.meta['Final_Xpath'] = Final_Xpath
+								yield request
+				else:
+						for i in range(1,max_pages+1):
+								i = Turn_True_Page(i,self.name)
+								url = urls.format(page=str(i))
+								request = Request(url,callback = self.parse_final,dont_filter=True)
+								request.meta['Final_Xpath'] = Final_Xpath
+								yield request
 		else:
-				#for i in range(1,int(max_pages)+1):
-				for i in range(1,2):
+				for i in range(1,int(max_pages)+1):
 						try:
 								i = Turn_True_Page(i,self.name)
 								url = urls.format(page=str(i))
@@ -267,25 +277,32 @@ class movieSpider(scrapy.Spider):
 		max_pages = Total_page_circulate(self.name,int(res_json))
 		print "最大页数是:%d"%max_pages
 		if All_Detail_Page is None:
-				#for i in range(1,max_pages+1):
-				for i in range(1,2):
-						i = Turn_True_Page(i,self.name)
-						url = urls.format(page=str(i))
-						request = Request(url,callback = self.parse_final,dont_filter=True,meta={
-											'splash':{
-											'endpoint':'render.html',
-											'args':{
-													'wait':0.5,
-													'images':0,
-													'render_all':1
-													}
-											}
-								})
-						request.meta['Final_Xpath'] = Final_Xpath
-						yield request
+				if self.Splash:
+						for i in range(1,max_pages+1):
+								i = Turn_True_Page(i,self.name)
+								url = urls.format(page=str(i))
+								request = Request(url,callback = self.parse_final,dont_filter=True,meta={
+													'splash':{
+													'endpoint':'render.html',
+													'args':{
+															'wait':0.5,
+															'images':0,
+															'render_all':1
+															}
+														}
+													})
+								request.meta['Final_Xpath'] = Final_Xpath
+								yield request
+				else:
+						for i in range(1,max_pages+1):
+								i = Turn_True_Page(i,self.name)
+								url = urls.format(page=str(i))
+								request = Request(url,callback = self.parse_final,dont_filter=True)
+								request.meta['Final_Xpath'] = Final_Xpath
+								yield request
+
 		else:
-				#for i in range(1,int(max_pages)+1):
-				for i in range(1,2):
+				for i in range(1,int(max_pages)+1):
 						try:
 								i = Turn_True_Page(i,self.name)
 								url = urls.format(page=str(i))
@@ -322,22 +339,28 @@ class movieSpider(scrapy.Spider):
 		except Exception,e:
 				print Exception,":",e
 		
-		
-		for url in detail_url:
-				if Signal_Detail_Page is None:
-						request = Request(url,callback = self.parse_final,meta={
-											'splash':{
-											'endpoint':'render.html',
-											'args':{
-													'wait':0.5,
-													'images':0,
-													'render_all':1
-													}
-											}
-									})
-						request.meta['Final_Xpath'] = Final_Xpath
-						yield request
+		if Signal_Detail_Page is None:
+				if self.Splash:
+						for url in detail_url:
+								request = Request(url,callback = self.parse_final,dont_filter=True,meta={
+													'splash':{
+													'endpoint':'render.html',
+													'args':{
+															'wait':0.5,
+															'images':0,
+															'render_all':1
+															}
+														}
+													})
+								request.meta['Final_Xpath'] = Final_Xpath
+								yield request
 				else:
+						for url in detail_url:
+								request = Request(url,callback = self.parse_final,dont_filter=True)
+								request.meta['Final_Xpath'] = Final_Xpath
+								yield request
+		else:
+				for url in detail_url:
 						request = Request(url,callback = self.parse_second)
 						request.meta['Index_Url'] = Index_Url
 						request.meta['Signal_Detail_Page'] = Signal_Detail_Page
@@ -368,40 +391,57 @@ class movieSpider(scrapy.Spider):
 						detail_url.append(url)
 		#在考虑在每一层加一个判断，相当于如果没有（第一个）要传递给下一层的数据，就直接传递给final_parse（注：在传递给final_parse时需要判断是否需要渲染，这里我暂时先默认都渲染，但是之后可以考虑在config.json的Final_Xpath加一个flag，1表示需要渲染，0表示不需要）
 		if Signal_Detail_Page is None:
-				for url in detail_url:
-						request = Request(url,callback = self.parse_final,dont_filter=True,meta={
-											'splash':{
-											'endpoint':'render.html',
-											'args':{
-													#只有aiyiyi需要load 10s，才能拿到播放量
-													'wait':0.5,
-													'images':0,
-													'render_all':1
-													}
-											}
-									})
-						request.meta['Some_Info'] = Some_Info
-						request.meta['Final_Xpath'] = Final_Xpath
-						yield request
+				if self.Splash:
+						for url in detail_url:
+								request = Request(url,callback = self.parse_final,dont_filter=True,meta={
+													'splash':{
+													'endpoint':'render.html',
+													'args':{
+															#只有aiyiyi需要load 10s，才能拿到播放量
+															'wait':0.5,
+															'images':0,
+															'render_all':1
+															}
+														}
+													})
+								request.meta['Some_Info'] = Some_Info
+								request.meta['Final_Xpath'] = Final_Xpath
+								yield request
+				else:
+						for url in detail_url:
+								request = Request(url,callback = self.parse_final,dont_filter=True)
+								request.meta['Some_Info'] = Some_Info
+								request.meta['Final_Xpath'] = Final_Xpath
+								yield request
 		else:
-				for url in detail_url:
-						#因为特殊情况，这个页面都需要渲染，保证拿到下一页的link
-						request = Request(url,callback = self.parse_second,dont_filter=True,meta={
-											'splash':{
-											'endpoint':'render.html',
-											'args':{
-													'wait':0.5,
-													'images':0,
-													'render_all':1
-													}
-											}
-									})
-						#我没想到起始页有不是www.xxxx.com/xxx/xxx这种开头的，这个芒果台是list.mangguo.com/.... 这里我不能用这个url头部来构造下一层url，所以我把当前页面的url头部作为新的Index_Url传递下去
-						request.meta['Index_Url'] = url
-						request.meta['Signal_Detail_Page'] = Signal_Detail_Page
-						request.meta['Target_Detail_Page'] = Target_Detail_Page
-						request.meta['Final_Xpath'] = Final_Xpath
-						yield request
+				if 'splash' in Signal_Detail_Page.keys():
+						for url in detail_url:
+								#增加一个可有可无的splash参数，存在就渲染，不存在就默认走静态
+								request = Request(url,callback = self.parse_second,dont_filter=True,meta={
+													'splash':{
+													'endpoint':'render.html',
+													'args':{
+															'wait':0.5,
+															'images':0,
+															'render_all':1
+															}
+														}
+												})
+								#我没想到起始页有不是www.xxxx.com/xxx/xxx这种开头的，这个芒果台是list.mangguo.com/.... 这里我不能用这个url头部来构造下一层url，所以我把当前页面的url头部作为新的Index_Url传递下去
+								request.meta['Index_Url'] = url
+								request.meta['Signal_Detail_Page'] = Signal_Detail_Page
+								request.meta['Target_Detail_Page'] = Target_Detail_Page
+								request.meta['Final_Xpath'] = Final_Xpath
+								yield request
+				else:
+						for url in detail_url:
+								request = Request(url,callback = self.parse_second,dont_filter=True)
+								request.meta['Index_Url'] = url
+								request.meta['Signal_Detail_Page'] = Signal_Detail_Page
+								request.meta['Target_Detail_Page'] = Target_Detail_Page
+								request.meta['Final_Xpath'] = Final_Xpath
+								yield request
+
 	
 	def parse_second(self,response):
 		Index_Url = response.meta.get('Index_Url',None)
@@ -418,23 +458,30 @@ class movieSpider(scrapy.Spider):
 								print Exception,":",e
 		detail_url = Relative_to_Absolute(Index_Url,response.xpath(Signal_Detail_Page['xpath']).extract(),self.name)
 		if Target_Detail_Page is None:
-				for url in detail_url:
-						request = Request(url,callback = self.parse_final,dont_filter=True,meta={
-												'splash':{
-												'endpoint':'render.html',
-												'args':{
-														'wait':0.5,
-														'images':0,
-														'render_all':1
-													}
-												}
-											})
-						request.meta['Some_Info'] = Some_Info
-						request.meta['Final_Xpath'] = Final_Xpath
-						yield request
+				if self.Splash:
+						for url in detail_url:
+								request = Request(url,callback = self.parse_final,dont_filter=True,meta={
+														'splash':{
+														'endpoint':'render.html',
+														'args':{
+																'wait':0.5,
+																'images':0,
+																'render_all':1
+																}
+															}
+														})
+								request.meta['Some_Info'] = Some_Info
+								request.meta['Final_Xpath'] = Final_Xpath
+								yield request
+				else:
+						for url in detail_url:
+								request = Request(url,callback = self.parse_final,dont_filter=True)
+								request.meta['Some_Info'] = Some_Info
+								request.meta['Final_Xpath'] = Final_Xpath
+								yield request
+
 		else:
 				for url in detail_url:
-						#print "now the url is %s"%url
 						request = Request(url,callback = self.parse_third,dont_filter=True)
 						request.meta['Index_Url'] = Index_Url
 						request.meta['Target_Detail_Page'] = Target_Detail_Page
@@ -455,21 +502,28 @@ class movieSpider(scrapy.Spider):
 								Some_Info[key] = response.xpath(Target_Detail_Page['Some_Info'][key]).extract()[0]
 						except Exception,e:
 								print Exception,":",e
-		for url in detail_url:
-				request = scrapy.Request(url,callback = self.parse_final,meta = {
-										'splash':{
-										'endpoint':'render.html',
-										'args':{
-												'wait':0.5,
-												'images':0,
-												'render_all':1
-												}
-										}
-								})				
-				request.meta['Some_Info'] = Some_Info
-				request.meta['Final_Xpath'] = Final_Xpath
-				#print "我就想看看传递过去的Some_Info是%s,并且当前访问的url是%s"%(Some_Info['artist_name'],url)
-				yield request
+		if self.Splash:
+				for url in detail_url:
+						request = scrapy.Request(url,callback = self.parse_final,dont_filter=True,meta = {
+												'splash':{
+												'endpoint':'render.html',
+												'args':{
+														'wait':0.5,
+														'images':0,
+														'render_all':1
+														}
+													}
+												})				
+						request.meta['Some_Info'] = Some_Info
+						request.meta['Final_Xpath'] = Final_Xpath
+						yield request
+		else:
+				for url in detail_url:
+						request = scrapy.Request(url,callback = self.parse_final,dont_filter=True)
+						request.meta['Some_Info'] = Some_Info
+						request.meta['Final_Xpath'] = Final_Xpath
+						yield request
+
 
 
 	def parse_final(self,response):
