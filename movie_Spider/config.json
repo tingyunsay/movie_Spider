@@ -1,6 +1,7 @@
 {
 	"youku_movie":[{
 				"Is_Json":0,
+				"Splash":0,
 				"Index_Url":["http://list.youku.com/category/show/c_96_s_1_d_1_p_1.html"],
 				"Max_Page":{
 						"xpath":"//ul[@class=\"yk-pages\"]/li[last()-1]/a/text()",
@@ -43,7 +44,7 @@
 			}],
 	"tudou_movie":[{
 				"Is_Json":1,
-				"Splash":1,
+				"Splash":0,
 				"Index_Url":["http://www.tudou.com/s3portal/service/pianku/data.action?pageSize=90&app=mainsitepc&deviceType=1&tags=2373&tagType=3&firstTagId=5&areaCode=230100&pageNo=1"],
 				"Max_Page":{
 						"index":["total"]
@@ -85,49 +86,50 @@
 			}],
 	"souhu_movie":[{
 				"Is_Json":0,
-				"Index_Url":["http://list.youku.com/category/show/c_96_s_1_d_1_p_1.html"],
+				"Splash":1,
+				"Index_Url":["http://so.tv.sohu.com/list_p1100_p2_p3_p42016_p5_p6_p7_p8_p9_p101_p11_p12_p13.html"],
 				"Max_Page":{
-						"xpath":"//ul[@class=\"yk-pages\"]/li[last()-1]/a/text()",
+						"xpath":"//div[@class=\"ssPages area\"]/a[last()-1]/text()",
 						"re":".+"
 					}
 			},
 			{
 				"All_Detail_Page":{
-						"xpath":["//li[@class=\"yk-col4 mr1\"]/div/div/a/@href"]
+						"xpath":["//ul[@class=\"st-list cfix\"]/li/div[1]/a/@href"]
 					}
 			},
 			{
 				"Signal_Detail_Page":{
-						"xpath":"//div[@class=\"base_info\"]/a[2]/@href"
+						"xpath":"//div[@class=\"crumbs\"]/a[last()]/@href"
 					}		
 			},
 			{
 				"Final_Xpath":{
 						"site_name":["souhu_movie"],
-						"movie_name":[""],
-						"publish_time":[""],
-						"primary_stars":[""],
-						"director":[""],
-						"area":[""],
-						"style_classify":[""],
-						"language":[""],
-						"play_counts":[""],
-						"comment_counts":[""],
-						"introduce":[""],
-						"fav_counts":[""],
-						"step_counts":[""],
-						"score_level":[""],
-						"score_counts":[""],
-						"fans_counts":[""],
-						"index":[""],
-						"duration":[""],
-						"evaluation_counts":[""],
-						"vote_counts":[""]
+						"movie_name":["//div[@class=\"movie-name area rel cfix\"]/h2/text()"],
+						"publish_time":["//ul[@class=\"cfix mB20\"]/li[1]/span/text()"],
+						"primary_stars":["//ul[@class=\"cfix mB20\"]/li[@class=\"w1\"]/a/text()"],
+						"director":["//ul[@class=\"cfix mB20\"]/li[5]/a/text()"],
+						"area":["//ul[@class=\"cfix mB20\"]/li[3]/a/text()"],
+						"style_classify":["//ul[@class=\"cfix mB20\"]/li[4]/a/text()"],
+						"language":["/"],
+						"play_counts":["//em[@class=\"total-play\"]/text()"],
+						"comment_counts":["//em[@class=\"comment-num\"]/text()"],
+						"introduce":["//span[@class=\"full_intro\"]/text()"],
+						"fav_counts":["//a[@class=\"like\"]/text()"],
+						"step_counts":["//a[@class=\"unlike\"]/text()"],
+						"score_level":["//strong[@class=\"score\"]/text()"],
+						"score_counts":["//em[@class=\"score-sum\"]/text()"],
+						"fans_counts":["/"],
+						"index":["/"],
+						"duration":["//ul[@class=\"cfix mB20\"]/li[2]/span/text()"],
+						"evaluation_counts":["/"],
+						"vote_counts":["/"]
 					}
 			}],
 	"mangguo_movie":[{
 				"Is_Json":0,
-				"Index_Url":["http://list.youku.com/category/show/c_96_s_1_d_1_p_1.html"],
+				"Index_Url":["http://list.mgtv.com/3/---------2-3-0--.html"],
 				"Max_Page":{
 						"xpath":"//ul[@class=\"yk-pages\"]/li[last()-1]/a/text()",
 						"re":".+"
