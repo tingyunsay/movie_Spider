@@ -129,44 +129,45 @@
 			}],
 	"mangguo_movie":[{
 				"Is_Json":0,
-				"Index_Url":["http://list.mgtv.com/3/---------2-3-0--.html"],
+				"Splash":1,
+				"Index_Url":["http://list.mgtv.com/3/---------2-1-0--.html"],
 				"Max_Page":{
-						"xpath":"//ul[@class=\"yk-pages\"]/li[last()-1]/a/text()",
+						"xpath":"//div[@class=\"w-pages w-pages-default \"]/ul/li[last()-1]/a/text()",
 						"re":".+"
 					}
 			},
 			{
 				"All_Detail_Page":{
-						"xpath":["//li[@class=\"yk-col4 mr1\"]/div/div/a/@href"]
+						"xpath":["//ul[@class=\"v-list-inner\"]/li/a[1]/@href"]
 					}
 			},
 			{
 				"Signal_Detail_Page":{
-						"xpath":"//div[@class=\"base_info\"]/a[2]/@href"
+						"xpath":"//div[@class=\"v-panel-route\"]/a[3]/@href"
 					}		
 			},
 			{
 				"Final_Xpath":{
 						"site_name":["mangguo_movie"],
-						"movie_name":[""],
-						"publish_time":[""],
-						"primary_stars":[""],
-						"director":[""],
-						"area":[""],
-						"style_classify":[""],
-						"language":[""],
-						"play_counts":[""],
-						"comment_counts":[""],
-						"introduce":[""],
-						"fav_counts":[""],
-						"step_counts":[""],
-						"score_level":[""],
-						"score_counts":[""],
-						"fans_counts":[""],
-						"index":[""],
-						"duration":[""],
-						"evaluation_counts":[""],
-						"vote_counts":[""]
+						"movie_name":["//div[@class=\"v-info-album-header\"]/h1/span/text()"],
+						"publish_time":["/"],
+						"primary_stars":["//div[@class=\"v-meta v-meta-album\"]/p[2]/a/text()"],
+						"director":["//div[@class=\"v-meta v-meta-album\"]/p[1]/a/text()"],
+						"area":["//div[@class=\"v-meta v-meta-album\"]/p[3]/a/text()"],
+						"style_classify":["//div[@class=\"v-meta v-meta-album\"]/p[4]/a/text()"],
+						"language":["/"],
+						"play_counts":["//span[@class=\"total\"]/em/text()"],
+						"comment_counts":["//span[@node-type=\"comments-total-nums\"][1]/text()"],
+						"introduce":["//div[@class=\"v-meta v-meta-album\"]/p[5]/span/text()"],
+						"fav_counts":["/"],
+						"step_counts":["/"],
+						"score_level":["/"],
+						"score_counts":["/"],
+						"fans_counts":["/"],
+						"index":["/"],
+						"duration":["/"],
+						"evaluation_counts":["/"],
+						"vote_counts":["/"]
 					}
 			}],
 	"douban_movie":[{
