@@ -29,7 +29,7 @@ from movie_Spider.Total_page_circulate import Total_page_circulate,Turn_True_Pag
 
 
 class movieSpider(scrapy.Spider):
-	name ='letv_movie'
+	name ='douban_movie'
 	allowed_domain = []
 		
 	def __init__(self,*args,**kwargs):

@@ -144,7 +144,7 @@
 			{
 				"Signal_Detail_Page":{
 						"xpath":"//div[@class=\"v-panel-route\"]/a[3]/@href"
-					}		
+					}
 			},
 			{
 				"Final_Xpath":{
@@ -171,50 +171,46 @@
 					}
 			}],
 	"douban_movie":[{
-				"Is_Json":0,
-				"Index_Url":["http://list.youku.com/category/show/c_96_s_1_d_1_p_1.html"],
+				"Is_Json":1,
+				"Splash":0,
+				"Index_Url":["https://movie.douban.com/j/search_subjects?type=movie&tag=%E7%83%AD%E9%97%A8&sort=recommend&page_limit=20&page_start=0"],
 				"Max_Page":{
-						"xpath":"//ul[@class=\"yk-pages\"]/li[last()-1]/a/text()",
-						"re":".+"
+						"index":17
 					}
 			},
 			{
 				"All_Detail_Page":{
-						"xpath":["//li[@class=\"yk-col4 mr1\"]/div/div/a/@href"]
+						"index":["subjects","url"]
 					}
-			},
-			{
-				"Signal_Detail_Page":{
-						"xpath":"//div[@class=\"base_info\"]/a[2]/@href"
-					}		
 			},
 			{
 				"Final_Xpath":{
 						"site_name":["douban_movie"],
-						"movie_name":[""],
-						"publish_time":[""],
-						"primary_stars":[""],
-						"director":[""],
-						"area":[""],
-						"style_classify":[""],
-						"language":[""],
-						"play_counts":[""],
-						"comment_counts":[""],
-						"introduce":[""],
-						"fav_counts":[""],
-						"step_counts":[""],
-						"score_level":[""],
-						"score_counts":[""],
-						"fans_counts":[""],
-						"index":[""],
-						"duration":[""],
-						"evaluation_counts":[""],
-						"vote_counts":[""]
+						"movie_name":["//span[@property=\"v:itemreviewed\"]/text()"],
+						"publish_time":["//span[@property=\"v:initialReleaseDate\"]/text()"],
+						"primary_stars":["//a[@rel=\"v:starring\"]/text()"],
+						"director":["//div[@id=\"info\"]/span[1]/span[2]/a/text()"],
+						"area":["//div[@id=\"info\"]/text()"],
+						"style_classify":["//span[@property=\"v:genre\"]/text()"],
+						"language":["//div[@id=\"info\"]/text()"],
+						"play_counts":["/"],
+						"comment_counts":["/"],
+						"introduce":["//span[@property=\"v:summary\"]/text()"],
+						"fav_counts":["/"],
+						"step_counts":["/"],
+						"score_level":["//strong[@class=\"ll rating_num\"]/text()"],
+						"score_counts":["//span[@property=\"v:votes\"]/text()"],
+						"fans_counts":["/"],
+						"index":["/"],
+						"duration":["//span[@property=\"v:runtime\"]/text()"],
+						"evaluation_counts":["//div[@id=\"comments-section\"]/div[@class=\"mod-hd\"]/h2/span/a/text()"],
+						"vote_counts":["/"]
 					}
 			}],
 	"letv_movie":[{
-				"Is_Json":0,
-				"Index_Url":["http://list.youku.com/category/show/c_96_s_1_d_1_p_1.html"],
+				"Is_Json":1,
+				"Splash":1,
+				"Index_Url":[""],
 				"Max_Page":{
 						"xpath":"//ul[@class=\"yk-pages\"]/li[last()-1]/a/text()",
 						"re":".+"

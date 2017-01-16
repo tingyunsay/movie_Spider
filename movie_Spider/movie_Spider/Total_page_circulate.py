@@ -11,7 +11,7 @@ def Total_page_circulate(site_name,max_pages):
 
 
 def Turn_True_Page(i,site_name):
-	if site_name == "douban_tv":
+	if site_name == "douban_movie":
 			return (i - 1)*20
 	else:
 			return i
@@ -27,6 +27,11 @@ def Total_page_circulate2(site_name,max_pages):
 			return max_pages
 
 
+def Total_Page_Byyourself(site_name):
+	if site_name == "douban_movie":
+			return 17
+	else:
+			raise ValueError("没有最大页数，请在config.json中重新赋值!!!")
 
 
 
