@@ -36,9 +36,9 @@ def Relative_to_Absolute(index_url,url_tail,site_name):
 				return [''.join(url_tail)]
 
 def Relative_to_Absolute2(index_url,url_tail,site_name):
-	if site_name == "letv_tv":
+	if site_name == "letv_movie":
 		res_urls = []
-		target_url = "http://www.le.com/tv/{aid}.html"
+		target_url = "http://www.le.com/ptv/vplay/{aid}.html"
 		for i in url_tail:
 				res_urls.append(target_url.format(aid=i))
 		return res_urls

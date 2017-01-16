@@ -209,45 +209,44 @@
 			}],
 	"letv_movie":[{
 				"Is_Json":1,
-				"Splash":1,
-				"Index_Url":[""],
+				"Splash":0,
+				"Index_Url":["http://list.le.com/apin/chandata.json?c=1&d=1&md=&o=9&s=1&p=1"],
 				"Max_Page":{
-						"xpath":"//ul[@class=\"yk-pages\"]/li[last()-1]/a/text()",
-						"re":".+"
+						"index":["data_count"]
 					}
 			},
 			{
 				"All_Detail_Page":{
-						"xpath":["//li[@class=\"yk-col4 mr1\"]/div/div/a/@href"]
+						"index":["data_list","vids"]
 					}
 			},
 			{
 				"Signal_Detail_Page":{
-						"xpath":"//div[@class=\"base_info\"]/a[2]/@href"
+						"xpath":"//a[@class=\"more\" and @k-name]/@href"
 					}		
 			},
 			{
 				"Final_Xpath":{
 						"site_name":["letv_movie"],
-						"movie_name":[""],
-						"publish_time":[""],
-						"primary_stars":[""],
-						"director":[""],
-						"area":[""],
-						"style_classify":[""],
-						"language":[""],
-						"play_counts":[""],
-						"comment_counts":[""],
-						"introduce":[""],
-						"fav_counts":[""],
-						"step_counts":[""],
-						"score_level":[""],
-						"score_counts":[""],
-						"fans_counts":[""],
-						"index":[""],
-						"duration":[""],
-						"evaluation_counts":[""],
-						"vote_counts":[""]
+						"movie_name":["//div[@class=\"play_name\"]/h2/text()"],
+						"publish_time":["//div[@class=\"play_info\"]/ul/li[1]/span/a/text()"],
+						"primary_stars":["//div[@class=\"play_info\"]/ul/li[5]/span/a/text()"],
+						"director":["//div[@class=\"play_info\"]/ul/li[3]/span/a/text()"],
+						"area":["//div[@class=\"play_info\"]/ul/li[2]/span/a/text()"],
+						"style_classify":["//div[@class=\"play_info\"]/ul/li[4]/span/a/text()"],
+						"language":["/"],
+						"play_counts":["//span[@class=\"play_time\"]/text()"],
+						"comment_counts":["//span[@class=\"comment_num\"]/text()"],
+						"introduce":["//div[@class=\"play_intro\"]/p/text()"],
+						"fav_counts":["/"],
+						"step_counts":["/"],
+						"score_level":["//span[@class=\"sorce_num\"]/text()"],
+						"score_counts":["/"],
+						"fans_counts":["/"],
+						"index":["/"],
+						"duration":["/"],
+						"evaluation_counts":["/"],
+						"vote_counts":["/"]
 					}
 			}]
 

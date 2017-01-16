@@ -4,8 +4,8 @@
 
 #这个是对所有的第一级页面的总的page数的一个统计
 def Total_page_circulate(site_name,max_pages):
-	if site_name == "tudou_tv":
-			return (max_pages/90)+1
+	if site_name == "letv_movie":
+			return (max_pages/30)+1
 	else:
 			return max_pages
 
