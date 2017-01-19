@@ -27,8 +27,9 @@ NEWSPIDER_MODULE = 'movie_Spider.spiders'
 # Configure a delay for requests for the same website (default: 0)
 # See http://scrapy.readthedocs.org/en/latest/topics/settings.html#download-delay
 # See also autothrottle settings and docs
-DOWNLOAD_DELAY = 1
-LOG_LEVEL = 'DEBUG'
+DOWNLOAD_DELAY = 0.5
+LOG_LEVEL = 'INFO'
+#LOG_LEVEL = 'INFO'
 # The download delay setting will honor only one of:
 #CONCURRENT_REQUESTS_PER_DOMAIN = 16
 #CONCURRENT_REQUESTS_PER_IP = 16
@@ -53,6 +54,8 @@ LOG_LEVEL = 'DEBUG'
 DUPEFILTER_CLASS = 'scrapyjs.SplashAwareDupeFilter'
 #SPLASH_URL = 'http://127.0.0.1:8050/'
 SPLASH_URL = 'http://192.168.217.41:8050/'
+#scrapy优化
+CONCURRENT_REQUESTS = 100
 
 # Enable or disable downloader middlewares
 # See http://scrapy.readthedocs.org/en/latest/topics/downloader-middleware.html
