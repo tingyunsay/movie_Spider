@@ -16,10 +16,10 @@ elif sys.argv[1].startswith('--'):
 				os.system("find ../ -name \*.log | xargs rm -f")
 				print "删除所有无关文件成功"
 		elif option == "del_pyc":
-				os.system("find ../music_Spider/ -name *.pyc | xargs rm -f")
+				os.system("find ../ -name *.pyc | xargs rm -f")
 				print "删除所有.pyc文件成功"
 		elif option == "del_log":
-				os.system("find ../music_Spider/ -name \*.log | xargs rm -f")
+				os.system("find ../ -name \*.log | xargs rm -f")
 				if not commands.getoutput("find ../music_Spider/ -name \*.log"):
 						print "删除所有.log文件成功"
 				else:
