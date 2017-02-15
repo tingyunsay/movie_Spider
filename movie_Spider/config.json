@@ -157,7 +157,7 @@
 						"style_classify":["//div[@class=\"v-meta v-meta-album\"]/p[4]/a/text()"],
 						"language":["/"],
 						"play_counts":["//span[@class=\"total\"]/em/text()"],
-						"comment_counts":["//span[@node-type=\"comments-total-nums\"][1]/text()"],
+						"comment_counts":["//span[@class=\"comments\"]/a/span[@node-type=\"comments-total-nums\"][1]/text()"],
 						"introduce":["//div[@class=\"v-meta v-meta-album\"]/p[5]/span/text()"],
 						"fav_counts":["/"],
 						"step_counts":["/"],
