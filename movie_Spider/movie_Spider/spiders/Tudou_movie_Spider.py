@@ -377,14 +377,17 @@ class movieSpider(scrapy.Spider):
 								yield request
 		else:
 				for url in detail_url:
-						request = Request(url,callback = self.parse_second)
-						request.meta['Index_Url'] = Index_Url
-						request.meta['Signal_Detail_Page'] = Signal_Detail_Page
-						request.meta['Target_Detail_Page'] = Target_Detail_Page
-						request.meta['Final_Xpath'] = Final_Xpath
-						yield request
-
-			
+						if not re.search('html$',url):
+								#错误的url，continue.这里是得到的json文件中有url为""的特例,直接跳过,后续也应该考虑这种情况：得到错误数据，或者拼接url失败，直接略过，加上报警.
+								continue
+						else:
+								request = Request(url,callback = self.parse_second,dont_filter=True)
+								request.meta['Index_Url'] = Index_Url
+								request.meta['Signal_Detail_Page'] = Signal_Detail_Page
+								request.meta['Target_Detail_Page'] = Target_Detail_Page
+								request.meta['Final_Xpath'] = Final_Xpath
+								yield request
+					
 	def parse_first(self,response):
 		Index_Url = response.meta.get('Index_Url',None)
 		All_Detail_Page = response.meta.get('All_Detail_Page',None)
@@ -607,13 +610,3 @@ class movieSpider(scrapy.Spider):
 									l.add_value(key , Some_Info[key])
 						yield l.load_item()
 				
-										#'splash':{
-								#		'endpoint':'render.html',
-								#		'args':{
-								#				'wait':5,
-								#				'images':0,
-								#				'render_all':1
-								#				}
-								#		}
-								#})				
-
